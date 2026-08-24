@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Team</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eef2f7;
+    color: #1d2939;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+
+header {
+    text-align: center;
+    background-color: #172a46;
+    color: white;
+    padding: 40px 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1rem;
+    color: #d8e4f2;
+}
+
+/* Team Container */
+
+.team-container {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+
+    gap: 30px;
+
+    padding: 60px 7%;
+}
+
+/* Team Card */
+
+.team-card {
+    flex: 1;
+
+    background-color: white;
+
+    padding: 35px 25px;
+    margin: 10px;
+
+    border: 2px solid #d0d7de;
+    border-radius: 18px;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+
+    text-align: center;
+
+    transition: transform 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* Hover */
+
+.team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* Highlight Team Lead */
+
+.team-lead {
+    background-color: #e8f4ff;
+
+    border: 3px solid #247ba0;
+
+    box-shadow: 0 10px 25px rgba(36, 123, 160, 0.25);
+}
+
+.team-lead h3 {
+    color: #247ba0;
+}
+
+/* Profile Circle */
+
+.profile-circle {
+    width: 100px;
+    height: 100px;
+
+    margin: 0 auto 20px;
+
+    border-radius: 50%;
+
+    background-color: #172a46;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 1.8rem;
+    font-weight: bold;
+
+    border: 5px solid #d8e4f2;
+}
+
+/* Team Lead Circle */
+
+.team-lead .profile-circle {
+    background-color: #247ba0;
+    border-color: #ffffff;
+}
+
+/* Card Headings */
+
+.team-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.team-card h3 {
+    font-size: 1rem;
+    color: #667085;
+    margin-bottom: 18px;
+}
+
+/* Description */
+
+.team-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #475467;
+
+    margin-bottom: 25px;
+}
+
+/* Profile Link */
+
+.team-card a {
+    display: inline-block;
+
+    padding: 10px 20px;
+
+    background-color: #172a46;
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 7px;
+
+    font-size: 0.9rem;
+
+    transition: background-color 0.3s;
+}
+
+.team-card a:hover {
+    background-color: #247ba0;
+}
+
+/* Footer */
+
+footer {
+    background-color: #172a46;
+    color: white;
+
+    text-align: center;
+
+    padding: 22px;
+
+    margin-top: auto;
+}
+
+/* Responsive Layout */
+
+@media (max-width: 600px) {
+
+    .team-container {
+        flex-direction: column;
+        padding: 40px 7%;
+    }
+
+    .team-card {
+        width: 100%;
+        margin: 0;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Meet Our Team</h1>
+        <p>Our talented team working together to build great projects</p>
+    </header>
+
+    <main class="team-container">
+
+        <!-- Team Member 1 -->
+        <div class="team-card team-lead">
+            <div class="profile-circle">DR</div>
+
+            <h2>Deepak Rajput</h2>
+            <h3>Team Lead</h3>
+
+            <p>
+                Deepak leads the team and manages project planning,
+                development and coordination. He is interested in
+                Web Development and Data Science.
+            </p>
+
+            <a href="#">View Profile</a>
+        </div>
+
+        <!-- Team Member 2 -->
+        <div class="team-card">
+            <div class="profile-circle">AS</div>
+
+            <h2>Aman Sharma</h2>
+            <h3>Frontend Developer</h3>
+
+            <p>
+                Aman works on creating responsive and attractive
+                user interfaces using HTML, CSS and JavaScript.
+            </p>
+
+            <a href="#">View Profile</a>
+        </div>
+
+        <!-- Team Member 3 -->
+        <div class="team-card">
+            <div class="profile-circle">RK</div>
+
+            <h2>Rahul Kumar</h2>
+            <h3>Backend Developer</h3>
+
+            <p>
+                Rahul focuses on backend development, databases
+                and building reliable systems for web applications.
+            </p>
+
+            <a href="#">View Profile</a>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Our Team | All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Plans</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7fb;
+    color: #172a46;
+}
+
+/* Header */
+
+header {
+    text-align: center;
+    padding: 50px 20px 30px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #667085;
+}
+
+/* Pricing */
+
+.pricing-container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 30px auto 60px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+
+    align-items: stretch;
+}
+
+/* Plan */
+
+.plan {
+    position: relative;
+
+    background-color: white;
+
+    border: 2px solid #d0d7de;
+    border-radius: 12px;
+
+    padding: 35px 25px;
+
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+
+    min-height: 430px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* Hover */
+
+.plan:hover {
+    transform: scale(1.05);
+    background-color: #e8f4ff;
+
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+}
+
+/* Popular */
+
+.popular {
+    border: 3px solid #247ba0;
+    border-style: dashed;
+}
+
+.popular-label {
+    position: absolute;
+
+    top: -14px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    background-color: #247ba0;
+    color: white;
+
+    padding: 6px 15px;
+
+    border-radius: 20px;
+
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+/* Content */
+
+.plan h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.price {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #247ba0;
+
+    margin-bottom: 25px;
+}
+
+.plan ul {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.plan li {
+    padding: 10px;
+
+    border-bottom: 1px solid #e4e7ec;
+}
+
+/* Button */
+
+.btn {
+    margin-top: auto;
+
+    display: block;
+
+    padding: 12px;
+
+    background-color: #172a46;
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 7px;
+
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #247ba0;
+}
+
+/* Responsive */
+
+@media (max-width: 700px) {
+
+    .pricing-container {
+        grid-template-columns: 1fr;
+    }
+
+    .plan {
+        min-height: auto;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Choose Your Plan</h1>
+        <p>Select the plan that works best for you</p>
+    </header>
+
+    <main class="pricing-container">
+
+        <!-- Basic -->
+        <div class="plan">
+            <h2>Basic</h2>
+
+            <p class="price">₹499 / month</p>
+
+            <ul>
+                <li>5 Projects</li>
+                <li>10 GB Storage</li>
+                <li>Email Support</li>
+                <li>Basic Analytics</li>
+            </ul>
+
+            <a href="#" class="btn">Choose Plan</a>
+        </div>
+
+        <!-- Standard -->
+        <div class="plan popular">
+
+            <span class="popular-label">Most Popular</span>
+
+            <h2>Standard</h2>
+
+            <p class="price">₹999 / month</p>
+
+            <ul>
+                <li>20 Projects</li>
+                <li>50 GB Storage</li>
+                <li>Priority Support</li>
+                <li>Advanced Analytics</li>
+            </ul>
+
+            <a href="#" class="btn">Choose Plan</a>
+        </div>
+
+        <!-- Premium -->
+        <div class="plan">
+            <h2>Premium</h2>
+
+            <p class="price">₹1499 / month</p>
+
+            <ul>
+                <li>Unlimited Projects</li>
+                <li>100 GB Storage</li>
+                <li>24/7 Support</li>
+                <li>Premium Analytics</li>
+            </ul>
+
+            <a href="#" class="btn">Choose Plan</a>
+        </div>
+
+    </main>
+
+</body>
+</html>

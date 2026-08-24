@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technology Daily</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #d9dde2;
+    color: #222;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    padding: 30px;
+}
+
+/* Main Newspaper */
+
+.newspaper {
+    max-width: 1200px;
+
+    margin: auto;
+
+    background-color: #fff;
+
+    padding: 35px 45px;
+
+    border: 1px solid #aaa;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Newspaper Header */
+
+.newspaper-header {
+    text-align: center;
+
+    border-bottom: 5px double #222;
+
+    padding-bottom: 20px;
+
+    margin-bottom: 30px;
+}
+
+.newspaper-header h1 {
+    font-family: Georgia, serif;
+
+    font-size: 3rem;
+
+    letter-spacing: 4px;
+
+    font-weight: bold;
+}
+
+.newspaper-header p {
+    margin-top: 8px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 0.9rem;
+
+    letter-spacing: 2px;
+}
+
+/* Article Heading */
+
+.article > h2 {
+    font-family: Georgia, serif;
+
+    font-size: 2.4rem;
+
+    text-align: center;
+
+    margin-bottom: 10px;
+
+    /* Heading spans all columns */
+    column-span: all;
+}
+
+.author {
+    text-align: center;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 0.85rem;
+
+    color: #666;
+
+    margin-bottom: 30px;
+
+    column-span: all;
+}
+
+/* Three Columns */
+
+.article-content {
+    column-count: 3;
+
+    column-gap: 35px;
+
+    column-rule: 1px solid #bbb;
+
+    font-size: 1rem;
+
+    line-height: 1.7;
+
+    text-align: justify;
+}
+
+/* Paragraphs */
+
+.article-content p {
+    margin-bottom: 20px;
+
+    text-align: justify;
+}
+
+/* First Letter */
+
+.article-content p:first-of-type::first-letter {
+    font-size: 3.5rem;
+
+    font-weight: bold;
+
+    float: left;
+
+    line-height: 0.8;
+
+    margin-right: 6px;
+
+    color: #8b0000;
+}
+
+/* Image aligned to left */
+
+.article-content img {
+    width: 180px;
+
+    height: 130px;
+
+    object-fit: cover;
+
+    float: left;
+
+    margin: 5px 15px 8px 0;
+
+    border: 2px solid #333;
+}
+
+/* Footer */
+
+footer {
+    border-top: 5px double #222;
+
+    margin-top: 35px;
+
+    padding-top: 15px;
+
+    text-align: center;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 0.85rem;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+
+    body {
+        padding: 20px;
+    }
+
+    .newspaper {
+        padding: 30px;
+    }
+
+    .newspaper-header h1 {
+        font-size: 2.3rem;
+    }
+
+    .article > h2 {
+        font-size: 2rem;
+    }
+
+    .article-content {
+        column-count: 2;
+
+        column-gap: 30px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .newspaper {
+        padding: 20px;
+    }
+
+    .newspaper-header h1 {
+        font-size: 1.7rem;
+
+        letter-spacing: 2px;
+    }
+
+    .article > h2 {
+        font-size: 1.6rem;
+    }
+
+    .article-content {
+        column-count: 1;
+
+        column-rule: none;
+
+        font-size: 0.95rem;
+    }
+
+    .article-content img {
+        width: 150px;
+        height: 110px;
+    }
+}
+    </style>
+</head>
+
+<body>
+
+    <main class="newspaper">
+
+        <header class="newspaper-header">
+            <h1>TECHNOLOGY DAILY</h1>
+            <p>News • Innovation • Digital World</p>
+        </header>
+
+        <article class="article">
+
+            <!-- Heading spans all columns -->
+            <h2>How Technology is Changing Our Daily Life</h2>
+
+            <p class="author">
+                By Deepak Rajput | August 24, 2026
+            </p>
+
+            <!-- Three-column content -->
+            <div class="article-content">
+
+                <img
+                    src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=500&q=80"
+                    alt="Technology">
+
+                <p>
+                    Technology has become an important part of our everyday
+                    lives. From smartphones and computers to online banking
+                    and digital education, technology has changed the way
+                    people communicate, work and learn. Today, many tasks
+                    that once required a lot of time can be completed within
+                    a few minutes with the help of digital tools.
+                </p>
+
+                <p>
+                    One of the biggest changes can be seen in communication.
+                    People can now connect with friends, family members and
+                    colleagues from almost anywhere in the world. Social
+                    media platforms, video calls and instant messaging have
+                    made communication faster and easier than ever before.
+                </p>
+
+                <p>
+                    Technology has also changed the education system.
+                    Students can attend online classes, access digital
+                    libraries and learn from educational videos. Online
+                    learning platforms provide students with opportunities
+                    to learn new subjects at their own pace.
+                </p>
+
+                <p>
+                    Another important area affected by technology is
+                    healthcare. Modern medical equipment helps doctors
+                    diagnose diseases more accurately. Digital health
+                    records also make it easier to store and access patient
+                    information when required.
+                </p>
+
+                <p>
+                    Businesses are also using technology to improve their
+                    operations. Cloud computing, artificial intelligence
+                    and data analytics help organizations make better
+                    decisions. Automation can reduce repetitive work and
+                    allow employees to focus on more important tasks.
+                </p>
+
+                <p>
+                    Artificial Intelligence is becoming especially important
+                    in the modern digital world. AI can analyze large
+                    amounts of information, recognize patterns and assist
+                    people in solving complex problems. It is being used in
+                    education, healthcare, transportation and many other
+                    fields.
+                </p>
+
+                <p>
+                    However, the increasing use of technology also creates
+                    certain challenges. Privacy, cybersecurity and excessive
+                    screen time are some important concerns. People need to
+                    use technology responsibly and protect their personal
+                    information while using online services.
+                </p>
+
+                <p>
+                    In the future, technology will continue to develop and
+                    influence our lives. New innovations may make daily
+                    activities even easier and create new opportunities.
+                    Therefore, understanding technology and learning how to
+                    use it effectively is becoming increasingly important.
+                </p>
+
+            </div>
+
+        </article>
+
+        <footer>
+            <p>&copy; 2026 Technology Daily | All Rights Reserved</p>
+        </footer>
+
+    </main>
+
+</body>
+</html>
