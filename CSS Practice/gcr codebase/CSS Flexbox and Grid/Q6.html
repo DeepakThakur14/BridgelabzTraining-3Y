@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Blog</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+
+        .blog {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            grid-template-rows: auto 1fr auto;
+            grid-template-areas:
+                "header header"
+                "sidebar main"
+                "footer footer";
+            gap: 20px;
+            padding: 20px;
+        }
+
+        header {
+            grid-area: header;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 25px;
+            background: #222;
+            color: white;
+        }
+
+        header nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        header a {
+            color: white;
+            text-decoration: none;
+        }
+
+        aside {
+            grid-area: sidebar;
+            padding: 25px;
+            background: white;
+        }
+
+        aside h2 {
+            margin-bottom: 20px;
+        }
+
+        aside ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        main {
+            grid-area: main;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        article {
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+        }
+
+        article h2 {
+            margin-bottom: 15px;
+        }
+
+        article p {
+            line-height: 1.7;
+        }
+
+        footer {
+            grid-area: footer;
+            padding: 20px;
+            text-align: center;
+            background: #222;
+            color: white;
+        }
+
+        @media (max-width: 800px) {
+            .blog {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto 1fr auto;
+                grid-template-areas:
+                    "header"
+                    "main"
+                    "sidebar"
+                    "footer";
+            }
+
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 500px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="blog">
+
+    <header>
+        <h1>My Blog</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <aside>
+        <h2>Categories</h2>
+        <ul>
+            <li>Technology</li>
+            <li>Programming</li>
+            <li>Web Development</li>
+            <li>Design</li>
+            <li>Education</li>
+        </ul>
+    </aside>
+
+    <main>
+        <article>
+            <h2>Learning HTML and CSS</h2>
+            <p>
+                HTML provides the structure of a webpage while CSS is used
+                to create attractive layouts, colors, spacing and responsive designs.
+            </p>
+        </article>
+
+        <article>
+            <h2>Introduction to CSS Grid</h2>
+            <p>
+                CSS Grid is a powerful layout system that allows developers
+                to create rows, columns and complex responsive layouts easily.
+            </p>
+        </article>
+    </main>
+
+    <footer>
+        <p>Contact: deepu14112005@gmail.com | Phone: +91 6375577370</p>
+    </footer>
+
+</div>
+
+</body>
+</html>
