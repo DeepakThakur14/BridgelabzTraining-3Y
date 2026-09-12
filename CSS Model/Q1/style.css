@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f6f8;
+    color: #222;
+    line-height: 1.6;
+}
+
+header {
+    text-align: center;
+    background-color: #1e293b;
+    color: white;
+    padding: 30px;
+}
+
+header h1 {
+    margin-bottom: 8px;
+}
+
+main {
+    width: 90%;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+section {
+    margin-bottom: 45px;
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.box-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.box {
+    width: 240px;
+    background-color: white;
+    text-align: center;
+}
+
+.solid {
+    border: 4px solid #2563eb;
+    padding: 20px;
+}
+
+.dashed {
+    border: 4px dashed #16a34a;
+    padding: 30px;
+}
+
+.double {
+    border: 6px double #dc2626;
+    padding: 15px;
+}
+
+.groove {
+    border: 6px groove #9333ea;
+    padding: 25px;
+}
+
+.rounded-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.rounded {
+    width: 250px;
+    background-color: white;
+    text-align: center;
+    border: 4px solid #0f766e;
+    padding: 25px;
+}
+
+.small-radius {
+    border-radius: 10px;
+}
+
+.medium-radius {
+    border-radius: 25px;
+}
+
+.large-radius {
+    border-radius: 50px;
+}
+
+.padding-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.padding-box {
+    background-color: white;
+    border: 3px solid #f59e0b;
+    text-align: center;
+}
+
+.padding-small {
+    padding: 10px;
+}
+
+.padding-medium {
+    padding: 25px;
+}
+
+.padding-large {
+    padding: 40px;
+}
+
+.hover-box {
+    width: 400px;
+    max-width: 100%;
+    margin: auto;
+    background-color: white;
+    border: 5px solid #2563eb;
+    padding: 30px;
+    text-align: center;
+    transition: border-color 0.4s ease;
+}
+
+.hover-box:hover {
+    border-color: #ef4444;
+}
+
+footer {
+    text-align: center;
+    background-color: #1e293b;
+    color: white;
+    padding: 20px;
+    margin-top: 30px;
+}
