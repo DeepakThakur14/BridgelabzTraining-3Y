@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Interface Components</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #dbeafe, #f3e8ff);
+            color: #1f2937;
+        }
+
+        header {
+            text-align: center;
+            padding: 35px 20px 20px;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #6b7280;
+        }
+
+        main {
+            min-height: 65vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 20px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 650px;
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 12px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 14px 16px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .search-btn {
+            padding: 14px 24px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .primary {
+            background: #2563eb;
+            color: white;
+        }
+
+        .secondary {
+            background: #e5e7eb;
+            color: #374151;
+        }
+
+        .success {
+            background: #16a34a;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:focus {
+            outline: 3px solid rgba(37, 99, 235, 0.25);
+            outline-offset: 2px;
+        }
+
+        .dropdown {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .dropdown label {
+            font-weight: bold;
+        }
+
+        .dropdown select {
+            width: 100%;
+            padding: 13px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 15px;
+            background: white;
+            outline: none;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        .dropdown select:hover {
+            border-color: #2563eb;
+        }
+
+        .dropdown select:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 25px 20px;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-btn {
+                width: 100%;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>User Interface Components</h1>
+        <p>A simple and modern CSS interface</p>
+    </header>
+
+    <main>
+        <section class="card">
+
+            <div class="search-box">
+                <input type="text" placeholder="Search something...">
+                <button class="search-btn">Search</button>
+            </div>
+
+            <div class="buttons">
+                <button class="btn primary">Primary Button</button>
+                <button class="btn secondary">Secondary Button</button>
+                <button class="btn success">Success Button</button>
+            </div>
+
+            <div class="dropdown">
+                <label for="category">Choose Category</label>
+
+                <select id="category">
+                    <option>Select an option</option>
+                    <option>Web Development</option>
+                    <option>Data Science</option>
+                    <option>Artificial Intelligence</option>
+                    <option>Cyber Security</option>
+                </select>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>UI Components Practice</p>
+    </footer>
+
+</body>
+</html>

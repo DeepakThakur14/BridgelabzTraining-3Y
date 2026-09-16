@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Animation Demonstration</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+            min-height: 100vh;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #d1d5db;
+        }
+
+        main {
+            min-height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .animation-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+            flex-wrap: wrap;
+            width: 90%;
+            max-width: 1000px;
+            min-height: 350px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .box-area {
+            width: 120px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .moving-box {
+            width: 70px;
+            height: 70px;
+            background: #2563eb;
+            border-radius: 10px;
+            animation: moveBox 3s ease-in-out infinite alternate;
+        }
+
+        .ball-area {
+            width: 120px;
+            height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .bouncing-ball {
+            width: 60px;
+            height: 60px;
+            background: #dc2626;
+            border-radius: 50%;
+            animation: bounceBall 1.5s ease-in-out infinite;
+        }
+
+        .animated-text {
+            font-size: 24px;
+            font-weight: bold;
+            animation: colorChange 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes moveBox {
+            0% {
+                transform: translateX(-50px) rotate(0deg);
+            }
+
+            100% {
+                transform: translateX(50px) rotate(180deg);
+            }
+        }
+
+        @keyframes bounceBall {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(120px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes colorChange {
+            0% {
+                color: #2563eb;
+                transform: scale(1);
+            }
+
+            50% {
+                color: #16a34a;
+                transform: scale(1.2);
+            }
+
+            100% {
+                color: #9333ea;
+                transform: scale(1);
+            }
+        }
+
+        footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 700px) {
+            .animation-container {
+                flex-direction: column;
+                gap: 40px;
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>CSS Animation Demonstration</h1>
+        <p>Three different animations using CSS keyframes</p>
+    </header>
+
+    <main>
+        <section class="animation-container">
+
+            <div class="box-area">
+                <div class="moving-box"></div>
+            </div>
+
+            <div class="ball-area">
+                <div class="bouncing-ball"></div>
+            </div>
+
+            <div class="text-area">
+                <p class="animated-text">Animated Text</p>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>CSS Animation Demonstration</p>
+    </footer>
+
+</body>
+</html>

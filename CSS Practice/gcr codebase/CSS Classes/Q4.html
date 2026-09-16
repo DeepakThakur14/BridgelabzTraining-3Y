@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors Practice</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            color: #222;
+        }
+
+        /* Element selector: styles all paragraph elements */
+        p {
+            line-height: 1.6;
+            margin: 10px 0;
+        }
+
+        /* Class selector: styles elements having the highlight class */
+        .highlight {
+            background: #fff3cd;
+            padding: 10px;
+            border-left: 5px solid #f59e0b;
+        }
+
+        /* ID selector: styles the main heading */
+        #main-heading {
+            color: white;
+            font-size: 32px;
+        }
+
+        /* Attribute selector: styles links containing target attribute */
+        a[target="_blank"] {
+            color: #2563eb;
+            font-weight: bold;
+        }
+
+        /* Descendant combinator: styles paragraphs inside the content section */
+        .content p {
+            color: #374151;
+        }
+
+        /* Child combinator: styles direct li children of the menu */
+        .menu > li {
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        /* Adjacent sibling combinator: styles the paragraph immediately after h2 */
+        h2 + p {
+            color: #16a34a;
+        }
+
+        /* General sibling combinator: styles paragraphs after h2 */
+        h2 ~ p {
+            padding-left: 10px;
+        }
+
+        header {
+            background: #1f2937;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        header p {
+            color: #d1d5db;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 25px;
+        }
+
+        .content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #2563eb;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            padding-left: 25px;
+        }
+
+        .links {
+            margin-top: 25px;
+        }
+
+        .links a {
+            margin-right: 20px;
+            text-decoration: none;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1 id="main-heading">CSS Selectors Practice Page</h1>
+        <p>Learn how different CSS selectors work</p>
+    </header>
+
+    <main>
+        <section class="content">
+
+            <h2>Element Selector</h2>
+            <p>
+                This paragraph is styled using the element selector.
+            </p>
+
+            <h2>Class Selector</h2>
+            <p class="highlight">
+                This paragraph uses a class selector for highlighting.
+            </p>
+
+            <h2>ID Selector</h2>
+            <p>
+                The main heading above is styled using an ID selector.
+            </p>
+
+            <h2>Attribute Selector</h2>
+            <p>
+                The link below uses an attribute selector.
+            </p>
+
+            <div class="links">
+                <a href="https://www.google.com" target="_blank">
+                    Google
+                </a>
+
+                <a href="https://www.example.com">
+                    Example
+                </a>
+            </div>
+
+            <h2>Combinator Selectors</h2>
+
+            <p>
+                This paragraph demonstrates the descendant and sibling selectors.
+            </p>
+
+            <ul class="menu">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>
+                    Web Development
+                    <ul>
+                        <li>Frontend</li>
+                        <li>Backend</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p>
+                CSS combinators help select elements based on their relationship.
+            </p>
+
+        </section>
+    </main>
+
+    <footer>
+        <p> CSS Selectors Practice</p>
+    </footer>
+
+</body>
+</html>
