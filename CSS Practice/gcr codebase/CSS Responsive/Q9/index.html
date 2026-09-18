@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Design Principles</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="box">
+            <h2>Fluid Layouts</h2>
+            <p>A fluid layout uses flexible sizes so the content adapts to different screen widths.</p>
+            <pre><code>width: 100%;
+max-width: 1200px;</code></pre>
+        </div>
+
+        <div class="box">
+            <h2>Flexible Media</h2>
+            <p>Flexible media allows images and videos to resize within their containers.</p>
+            <pre><code>img {
+    max-width: 100%;
+    height: auto;
+}</code></pre>
+        </div>
+
+        <div class="box">
+            <h2>Breakpoints</h2>
+            <p>Breakpoints change the layout when the screen reaches a specific width.</p>
+            <pre><code>@media (max-width: 600px) {
+    ...
+}</code></pre>
+        </div>
+
+    </div>
+
+</body>
+</html>
