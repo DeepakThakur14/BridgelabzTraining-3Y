@@ -1,0 +1,99 @@
+:root {
+    --bs-primary: #6f42c1;
+    --bs-primary-rgb: 111, 66, 193;
+    --bs-font-sans-serif: "Poppins", sans-serif;
+}
+
+body {
+    font-family: var(--bs-font-sans-serif);
+    background-color: #f8f7fc;
+    color: #29233a;
+}
+
+.site-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #eee8f8;
+}
+
+.logo {
+    color: var(--bs-primary);
+    font-size: 1.7rem;
+    font-weight: 700;
+}
+
+.nav-link {
+    color: #4d465a;
+    margin-left: 20px;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: var(--bs-primary);
+}
+
+.hero {
+    background: linear-gradient(135deg, #f0eaff, #ffffff);
+}
+
+.hero h1 {
+    color: #2d1d49;
+}
+
+.btn-primary {
+    background-color: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.btn-primary:hover {
+    background-color: #59349b;
+    border-color: #59349b;
+}
+
+.blog-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.blog-card img {
+    height: 250px;
+    object-fit: cover;
+}
+
+.badge {
+    background-color: #eee5ff;
+    color: var(--bs-primary);
+    font-size: 0.85rem;
+    padding: 8px 12px;
+}
+
+.about-section {
+    background-color: #eee8f8;
+}
+
+.site-footer {
+    background-color: #2d1d49;
+    color: white;
+}
+
+@media (max-width: 576px) {
+
+    .nav-link {
+        margin-left: 8px;
+        font-size: 0.9rem;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    .blog-card img {
+        height: 200px;
+    }
+}

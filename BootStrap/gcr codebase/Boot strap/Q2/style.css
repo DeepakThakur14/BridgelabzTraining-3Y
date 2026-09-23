@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.profile-img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+}
+
+.contact-form {
+    max-width: 550px;
+}
+
+section {
+    scroll-margin-top: 30px;
+}
+
+@media (max-width: 576px) {
+    .profile-img {
+        width: 140px;
+        height: 140px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}

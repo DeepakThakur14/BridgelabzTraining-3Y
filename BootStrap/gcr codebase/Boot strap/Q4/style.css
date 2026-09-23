@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background: linear-gradient(135deg, #212529, #343a40);
+}
+
+main {
+    min-height: 80vh;
+}
+
+img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+}
+
+.list-group-item {
+    padding: 15px 18px;
+    transition: 0.3s;
+}
+
+.list-group-item:hover {
+    transform: translateX(5px);
+}
+
+.table {
+    background-color: white;
+}
+
+@media (max-width: 576px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .lead {
+        font-size: 1rem;
+    }
+}

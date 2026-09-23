@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.product-card {
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+}
+
+.product-card img {
+    height: 220px;
+    object-fit: cover;
+}
+
+@media (max-width: 576px) {
+    .product-card img {
+        height: 250px;
+    }
+}
