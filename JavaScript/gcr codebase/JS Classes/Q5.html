@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ticket Booking</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            width: 350px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .valid {
+            border-color: green;
+        }
+
+        .invalid {
+            border-color: red;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #ticketDetails {
+            margin-top: 20px;
+            padding: 10px;
+            background: #e8f5e9;
+            border-radius: 5px;
+            overflow-wrap: anywhere;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Movie Ticket Booking</h2>
+
+        <form id="bookingForm" novalidate>
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Enter your name">
+            <div class="error" id="nameError"></div>
+
+            <label for="email">Email</label>
+            <input type="text" id="email" placeholder="Enter your email">
+            <div class="error" id="emailError"></div>
+
+            <label for="seats">Number of Seats (1-10)</label>
+            <input type="number" id="seats" placeholder="Enter seats" min="1" max="10">
+            <div class="error" id="seatsError"></div>
+
+            <button type="submit">Book Tickets</button>
+        </form>
+
+        <div id="ticketDetails" hidden></div>
+    </div>
+
+    <script>
+        const form = document.getElementById("bookingForm");
+
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+        const seatsInput = document.getElementById("seats");
+
+        function validateName() {
+            const value = nameInput.value.trim();
+            const valid = /^[A-Za-z]+(?: [A-Za-z]+)*$/.test(value);
+
+            showValidation(nameInput, "nameError", valid,
+                "Name must contain alphabets only.");
+
+            return valid;
+        }
+
+        function validateEmail() {
+            const value = emailInput.value.trim();
+            const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+            showValidation(emailInput, "emailError", valid,
+                "Enter a valid email address.");
+
+            return valid;
+        }
+
+        function validateSeats() {
+            const value = seatsInput.value.trim();
+            const seats = Number(value);
+            const valid = value !== "" &&
+                Number.isInteger(seats) &&
+                seats >= 1 &&
+                seats <= 10;
+
+            showValidation(seatsInput, "seatsError", valid,
+                "Seats must be a number between 1 and 10.");
+
+            return valid;
+        }
+
+        function showValidation(input, errorId, valid, message) {
+            input.classList.toggle("valid", valid);
+            input.classList.toggle("invalid", !valid);
+
+            document.getElementById(errorId).textContent =
+                valid ? "" : message;
+        }
+
+        nameInput.addEventListener("input", validateName);
+        emailInput.addEventListener("input", validateEmail);
+        seatsInput.addEventListener("input", validateSeats);
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const isNameValid = validateName();
+            const isEmailValid = validateEmail();
+            const areSeatsValid = validateSeats();
+
+            const ticketDetails = document.getElementById("ticketDetails");
+
+            if (isNameValid && isEmailValid && areSeatsValid) {
+                const booking = {
+                    name: nameInput.value.trim(),
+                    email: emailInput.value.trim(),
+                    seats: Number(seatsInput.value)
+                };
+
+                ticketDetails.replaceChildren();
+
+                const heading = document.createElement("h3");
+                heading.textContent = "Booking Successful!";
+
+                const nameParagraph = document.createElement("p");
+                nameParagraph.textContent = "Name: " + booking.name;
+
+                const emailParagraph = document.createElement("p");
+                emailParagraph.textContent = "Email: " + booking.email;
+
+                const seatsParagraph = document.createElement("p");
+                seatsParagraph.textContent = "Seats: " + booking.seats;
+
+                ticketDetails.append(
+                    heading,
+                    nameParagraph,
+                    emailParagraph,
+                    seatsParagraph
+                );
+
+                ticketDetails.hidden = false;
+
+                console.log(booking);
+            } else {
+                ticketDetails.hidden = true;
+            }
+        });
+    </script>
+
+</body>

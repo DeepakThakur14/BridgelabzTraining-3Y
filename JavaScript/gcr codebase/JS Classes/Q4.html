@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Form Builder</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        #generatedForm {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Custom Form Builder</h2>
+
+        <label for="fieldLabel">Field Label</label>
+        <input type="text" id="fieldLabel" placeholder="Enter field label">
+
+        <label for="fieldType">Field Type</label>
+        <select id="fieldType">
+            <option value="text">Text</option>
+            <option value="email">Email</option>
+            <option value="password">Password</option>
+            <option value="number">Number</option>
+        </select>
+
+        <button type="button" id="addField">Add Field</button>
+
+        <form id="generatedForm">
+            <h3>Generated Form</h3>
+            <button type="submit">Submit Form</button>
+        </form>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        class FormBuilder {
+            constructor(formId) {
+                this.form = document.getElementById(formId);
+                this.fields = [];
+            }
+
+            addField(type, label) {
+                this.fields.push({ type, label });
+
+                const fieldContainer = document.createElement("div");
+                const fieldLabel = document.createElement("label");
+                const input = document.createElement("input");
+
+                fieldLabel.textContent = label;
+                input.type = type;
+                input.name = label;
+                input.placeholder = "Enter " + label;
+                input.required = true;
+
+                fieldContainer.appendChild(fieldLabel);
+                fieldContainer.appendChild(input);
+
+                const submitButton = this.form.querySelector(
+                    'button[type="submit"]'
+                );
+
+                this.form.insertBefore(fieldContainer, submitButton);
+            }
+        }
+
+        const builder = new FormBuilder("generatedForm");
+
+        document.getElementById("addField").addEventListener("click", function() {
+            const label = document.getElementById("fieldLabel").value.trim();
+            const type = document.getElementById("fieldType").value;
+
+            if (label === "") {
+                alert("Please enter a field label.");
+                return;
+            }
+
+            builder.addField(type, label);
+
+            document.getElementById("fieldLabel").value = "";
+        });
+
+        document.getElementById("generatedForm").addEventListener(
+            "submit",
+            function(event) {
+                event.preventDefault();
+                document.getElementById("result").textContent =
+                    "Form submitted successfully!";
+            }
+        );
+    </script>
+
+</body>

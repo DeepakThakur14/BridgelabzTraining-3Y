@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            width: 350px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 4px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .valid {
+            border-color: green;
+        }
+
+        .invalid {
+            border-color: red;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+
+        #result {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Student Registration</h2>
+
+        <form id="studentForm" novalidate>
+            <input type="text" id="name" placeholder="Enter Name">
+            <div class="error" id="nameError"></div>
+
+            <input type="text" id="email" placeholder="Enter Email">
+            <div class="error" id="emailError"></div>
+
+            <input type="text" id="phone" placeholder="Enter Phone Number">
+            <div class="error" id="phoneError"></div>
+
+            <input type="password" id="password" placeholder="Enter Password">
+            <div class="error" id="passwordError"></div>
+
+            <button type="submit">Register</button>
+            <p id="result"></p>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById("studentForm");
+
+        const fields = [
+            "name",
+            "email",
+            "phone",
+            "password"
+        ];
+
+        function validateField(id) {
+            const input = document.getElementById(id);
+            const error = document.getElementById(id + "Error");
+            const value = input.value.trim();
+
+            let valid = false;
+            let message = "";
+
+            if (id === "name") {
+                valid = /^[A-Za-z ]+$/.test(value);
+                message = "Name must contain only alphabets.";
+            }
+
+            if (id === "email") {
+                valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+                message = "Enter a valid email address.";
+            }
+
+            if (id === "phone") {
+                valid = /^\d{10}$/.test(value);
+                message = "Phone number must contain exactly 10 digits.";
+            }
+
+            if (id === "password") {
+                valid = /^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9\s])\S+$/.test(value);
+                message = "Password needs an uppercase letter, a number and a special character.";
+            }
+
+            input.classList.toggle("valid", valid);
+            input.classList.toggle("invalid", !valid);
+            error.textContent = valid ? "" : message;
+
+            return valid;
+        }
+
+        fields.forEach(id => {
+            document.getElementById(id).addEventListener("input", () => {
+                validateField(id);
+                document.getElementById("result").textContent = "";
+            });
+        });
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const allValid = fields.every(validateField);
+            const result = document.getElementById("result");
+
+            if (allValid) {
+                result.style.color = "green";
+                result.textContent = "Registration successful!";
+            } else {
+                result.style.color = "red";
+                result.textContent = "Please correct the errors.";
+            }
+        });
+    </script>
+
+</body>

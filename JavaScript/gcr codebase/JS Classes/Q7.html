@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form Validation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ccc;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 5px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .valid {
+            border-color: green;
+        }
+
+        .invalid {
+            border-color: red;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #result {
+            text-align: center;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Login Form</h2>
+
+        <form id="loginForm" novalidate>
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter Username"
+                autocomplete="username"
+            >
+            <div class="error" id="usernameError"></div>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter Password"
+                autocomplete="current-password"
+            >
+            <div class="error" id="passwordError"></div>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p id="result"></p>
+    </div>
+
+    <script>
+        const form = document.getElementById("loginForm");
+        const username = document.getElementById("username");
+        const password = document.getElementById("password");
+        const result = document.getElementById("result");
+
+        function validateUsername() {
+            const valid = username.value.length >= 5;
+
+            username.classList.toggle("valid", valid);
+            username.classList.toggle("invalid", !valid);
+
+            document.getElementById("usernameError").textContent =
+                valid ? "" : "Username must contain at least 5 characters.";
+
+            return valid;
+        }
+
+        function validatePassword() {
+            const value = password.value;
+
+            const valid =
+                value.length >= 8 &&
+                /[A-Z]/.test(value) &&
+                /[a-z]/.test(value) &&
+                /\d/.test(value) &&
+                /[^A-Za-z0-9\s]/.test(value);
+
+            password.classList.toggle("valid", valid);
+            password.classList.toggle("invalid", !valid);
+
+            let message = "";
+
+            if (value.length < 8) {
+                message = "Password must contain at least 8 characters.";
+            } else if (!/[A-Z]/.test(value)) {
+                message = "Password must contain an uppercase letter.";
+            } else if (!/[a-z]/.test(value)) {
+                message = "Password must contain a lowercase letter.";
+            } else if (!/\d/.test(value)) {
+                message = "Password must contain a number.";
+            } else if (!/[^A-Za-z0-9\s]/.test(value)) {
+                message = "Password must contain a special character.";
+            }
+
+            document.getElementById("passwordError").textContent =
+                valid ? "" : message;
+
+            return valid;
+        }
+
+        username.addEventListener("input", validateUsername);
+        password.addEventListener("input", validatePassword);
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const isUsernameValid = validateUsername();
+            const isPasswordValid = validatePassword();
+
+            if (isUsernameValid && isPasswordValid) {
+                result.style.color = "green";
+                result.textContent = "Validation successful! Login form is valid.";
+            } else {
+                result.style.color = "red";
+                result.textContent = "Please correct the errors.";
+            }
+        });
+    </script>
+
+</body>
+
