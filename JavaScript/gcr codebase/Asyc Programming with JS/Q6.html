@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ccc;
+            text-align: center;
+        }
+
+        .product-card img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+        }
+
+        .product-card h3 {
+            font-size: 16px;
+            min-height: 40px;
+        }
+
+        .price {
+            color: green;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .loading {
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .error {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Fake Store - Product Dashboard</h1>
+
+    <p id="status" class="loading">Loading products...</p>
+
+    <div id="products"></div>
+
+    <script>
+        const API_URL = "https://fakestoreapi.com/products";
+
+        async function fetchProducts() {
+            const status = document.getElementById("status");
+            const productsContainer = document.getElementById("products");
+
+            try {
+                const response = await fetch(API_URL);
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch products");
+                }
+
+                const products = await response.json();
+
+                status.textContent = "Products loaded successfully!";
+
+                products.forEach(product => {
+                    console.log("Product:", product.title);
+                    console.log("Price: $" + product.price);
+                    console.log("Image:", product.image);
+                    console.log("---------------------------");
+
+                    const card = document.createElement("div");
+                    card.className = "product-card";
+
+                    const image = document.createElement("img");
+                    image.src = product.image;
+                    image.alt = product.title;
+
+                    const title = document.createElement("h3");
+                    title.textContent = product.title;
+
+                    const price = document.createElement("p");
+                    price.className = "price";
+                    price.textContent = "$" + product.price.toFixed(2);
+
+                    const imageUrl = document.createElement("p");
+                    const link = document.createElement("a");
+
+                    link.href = product.image;
+                    link.textContent = "View Image";
+                    link.target = "_blank";
+                    link.rel = "noopener noreferrer";
+
+                    imageUrl.appendChild(link);
+
+                    card.append(image, title, price, imageUrl);
+                    productsContainer.appendChild(card);
+                });
+
+            } catch (error) {
+                status.textContent = "Error: " + error.message;
+                status.className = "error";
+                console.error(error);
+            }
+        }
+
+        fetchProducts();
+    </script>
+
+</body>
+</html>
