@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Dropdown</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .dropdown {
+            position: relative;
+            width: 250px;
+        }
+
+        #dropdownBtn {
+            width: 100%;
+            padding: 14px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .options {
+            display: none;
+            position: absolute;
+            width: 100%;
+            background: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            border-radius: 6px;
+            margin-top: 5px;
+            overflow: hidden;
+        }
+
+        .options.show {
+            display: block;
+        }
+
+        .option {
+            padding: 12px;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background: #dbeafe;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dropdown" id="dropdown">
+        <button id="dropdownBtn">Select an Option ▼</button>
+
+        <div class="options" id="options">
+            <div class="option">HTML</div>
+            <div class="option">CSS</div>
+            <div class="option">JavaScript</div>
+            <div class="option">React</div>
+            <div class="option">Node.js</div>
+        </div>
+    </div>
+
+    <script>
+        const dropdown = document.getElementById("dropdown");
+        const dropdownBtn = document.getElementById("dropdownBtn");
+        const options = document.getElementById("options");
+
+        dropdownBtn.addEventListener("click", function(event) {
+            event.stopPropagation();
+            options.classList.toggle("show");
+        });
+
+        options.addEventListener("click", function(event) {
+            if (event.target.classList.contains("option")) {
+                dropdownBtn.textContent = event.target.textContent + " ▼";
+                options.classList.remove("show");
+            }
+        });
+
+        document.addEventListener("click", function(event) {
+            if (!dropdown.contains(event.target)) {
+                options.classList.remove("show");
+            }
+        }, true);
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List Manager</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            padding: 40px 15px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .input-section {
+            display: flex;
+            gap: 10px;
+            margin: 25px 0;
+        }
+
+        input {
+            flex: 1;
+            min-width: 0;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            border: none;
+            padding: 10px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .add-btn {
+            background: #2563eb;
+        }
+
+        .edit-btn {
+            background: #f59e0b;
+        }
+
+        .delete-btn {
+            background: #dc2626;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #f1f5f9;
+            border-radius: 7px;
+        }
+
+        .product-name {
+            flex: 1;
+            overflow-wrap: anywhere;
+        }
+
+        .edit-input {
+            flex: 1;
+            min-width: 0;
+            padding: 8px;
+        }
+
+        .empty-message {
+            justify-content: center;
+            color: #777;
+        }
+
+        @media (max-width: 450px) {
+            .input-section {
+                flex-direction: column;
+            }
+
+            li {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Product List Manager</h1>
+
+        <div class="input-section">
+            <input type="text" id="productInput" placeholder="Enter product name">
+            <button class="add-btn" id="addBtn">Add Product</button>
+        </div>
+
+        <ul id="productList">
+            <li class="empty-message">No products added yet.</li>
+        </ul>
+    </div>
+
+    <script>
+        const productInput = document.getElementById("productInput");
+        const addBtn = document.getElementById("addBtn");
+        const productList = document.getElementById("productList");
+
+        function addProduct() {
+            const productName = productInput.value.trim();
+
+            if (productName === "") {
+                alert("Please enter a product name.");
+                return;
+            }
+
+            const li = document.createElement("li");
+            const span = document.createElement("span");
+            const editBtn = document.createElement("button");
+            const deleteBtn = document.createElement("button");
+
+            span.className = "product-name";
+            span.textContent = productName;
+
+            editBtn.className = "edit-btn";
+            editBtn.textContent = "Edit";
+
+            deleteBtn.className = "delete-btn";
+            deleteBtn.textContent = "Delete";
+
+            li.append(span, editBtn, deleteBtn);
+
+            const emptyMessage = productList.querySelector(".empty-message");
+
+            if (emptyMessage) {
+                emptyMessage.remove();
+            }
+
+            productList.appendChild(li);
+            productInput.value = "";
+            productInput.focus();
+        }
+
+        addBtn.addEventListener("click", addProduct);
+
+        productInput.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                addProduct();
+            }
+        });
+
+        function saveEdit(li) {
+            const editInput = li.querySelector(".edit-input");
+
+            if (!editInput) {
+                return;
+            }
+
+            const newName = editInput.value.trim();
+            const span = document.createElement("span");
+
+            span.className = "product-name";
+            span.textContent = newName || editInput.dataset.oldName;
+
+            editInput.replaceWith(span);
+            li.querySelector(".edit-btn").textContent = "Edit";
+        }
+
+        productList.addEventListener("click", function(event) {
+            const target = event.target;
+            const li = target.closest("li");
+
+            if (!li || !productList.contains(li)) {
+                return;
+            }
+
+            if (target.classList.contains("delete-btn")) {
+                li.remove();
+
+                if (productList.children.length === 0) {
+                    const message = document.createElement("li");
+                    message.className = "empty-message";
+                    message.textContent = "No products added yet.";
+                    productList.appendChild(message);
+                }
+
+                return;
+            }
+
+            if (target.classList.contains("edit-btn")) {
+                const existingInput = li.querySelector(".edit-input");
+
+                if (existingInput) {
+                    saveEdit(li);
+                    return;
+                }
+
+                const span = li.querySelector(".product-name");
+                const editInput = document.createElement("input");
+
+                editInput.type = "text";
+                editInput.className = "edit-input";
+                editInput.value = span.textContent;
+                editInput.dataset.oldName = span.textContent;
+
+                span.replaceWith(editInput);
+                target.textContent = "Save";
+                editInput.focus();
+                editInput.select();
+            }
+        });
+
+        document.addEventListener("click", function(event) {
+            productList.querySelectorAll(".edit-input").forEach(function(input) {
+                const li = input.closest("li");
+
+                if (!li.contains(event.target)) {
+                    saveEdit(li);
+                }
+            });
+        });
+
+        productList.addEventListener("keydown", function(event) {
+            const input = event.target;
+
+            if (!input.classList.contains("edit-input")) {
+                return;
+            }
+
+            const li = input.closest("li");
+
+            if (event.key === "Enter") {
+                saveEdit(li);
+            }
+
+            if (event.key === "Escape") {
+                input.value = input.dataset.oldName;
+                saveEdit(li);
+            }
+        });
+    </script>
+</body>
+</html>

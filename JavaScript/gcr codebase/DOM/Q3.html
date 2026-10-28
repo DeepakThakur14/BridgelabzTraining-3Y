@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Step Form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 450px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 25px;
+        }
+
+        .step {
+            display: none;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+
+        #summary {
+            display: none;
+        }
+
+        #summary p {
+            overflow-wrap: anywhere;
+        }
+
+        #success {
+            color: green;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Registration Form</h1>
+
+        <form id="multiStepForm" novalidate>
+            <div class="step active">
+                <label for="name">Step 1: Name</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+                <p class="error"></p>
+            </div>
+
+            <div class="step">
+                <label for="email">Step 2: Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+                <p class="error"></p>
+            </div>
+
+            <div class="step">
+                <label for="password">Step 3: Password</label>
+                <input type="password" id="password" placeholder="Enter password" minlength="8" required>
+                <p class="error"></p>
+            </div>
+
+            <div class="buttons" id="navigation">
+                <button type="button" id="backBtn" disabled>Back</button>
+                <button type="button" id="nextBtn">Next</button>
+            </div>
+        </form>
+
+        <div id="summary">
+            <h2>Registration Summary</h2>
+            <p id="summaryName"></p>
+            <p id="summaryEmail"></p>
+            <p id="summaryPassword"></p>
+            <p id="success">Registration completed successfully!</p>
+            <button type="button" id="restartBtn">Start Again</button>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById("multiStepForm");
+        const steps = document.querySelectorAll(".step");
+        const backBtn = document.getElementById("backBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const summary = document.getElementById("summary");
+        const navigation = document.getElementById("navigation");
+        const restartBtn = document.getElementById("restartBtn");
+
+        let currentStep = 0;
+
+        function showStep(index) {
+            steps.forEach((step, i) => {
+                step.classList.toggle("active", i === index);
+            });
+
+            backBtn.disabled = index === 0;
+            nextBtn.textContent =
+                index === steps.length - 1 ? "Submit" : "Next";
+        }
+
+        function validateStep() {
+            const currentFields =
+                steps[currentStep].querySelectorAll("input");
+
+            const error = steps[currentStep].querySelector(".error");
+
+            error.textContent = "";
+
+            for (const input of currentFields) {
+                if (input.value.trim() === "") {
+                    error.textContent = "This field is required.";
+                    input.focus();
+                    return false;
+                }
+
+                if (!input.checkValidity()) {
+                    error.textContent = input.validity.typeMismatch
+                        ? "Please enter a valid email address."
+                        : "Password must contain at least 8 characters.";
+
+                    input.focus();
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        nextBtn.addEventListener("click", function() {
+            if (!validateStep()) {
+                return;
+            }
+
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                showStep(currentStep);
+            } else {
+                document.getElementById("summaryName").textContent =
+                    "Name: " + document.getElementById("name").value;
+
+                document.getElementById("summaryEmail").textContent =
+                    "Email: " + document.getElementById("email").value;
+
+                document.getElementById("summaryPassword").textContent =
+                    "Password: " + "*".repeat(
+                        document.getElementById("password").value.length
+                    );
+
+                form.style.display = "none";
+                summary.style.display = "block";
+            }
+        });
+
+        backBtn.addEventListener("click", function() {
+            if (currentStep > 0) {
+                currentStep--;
+                showStep(currentStep);
+            }
+        });
+
+        restartBtn.addEventListener("click", function() {
+            form.reset();
+            currentStep = 0;
+
+            document.querySelectorAll(".error").forEach(error => {
+                error.textContent = "";
+            });
+
+            summary.style.display = "none";
+            form.style.display = "block";
+
+            showStep(currentStep);
+        });
+
+        showStep(currentStep);
+    </script>
+
+</body>
+</html>

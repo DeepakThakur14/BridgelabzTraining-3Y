@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Character Counter</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            padding: 40px 15px;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+            height: 180px;
+            padding: 15px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            resize: vertical;
+        }
+
+        #counter {
+            text-align: right;
+            margin: 12px 0;
+            font-weight: bold;
+            color: green;
+        }
+
+        #counter.warning {
+            color: #d4a000;
+        }
+
+        #counter.danger {
+            color: red;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #message {
+            text-align: center;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Live Character Counter</h1>
+
+        <textarea id="textArea" maxlength="100" placeholder="Start typing here..."></textarea>
+
+        <p id="counter">100 characters remaining</p>
+
+        <button id="resetBtn">Reset</button>
+
+        <p id="message">Maximum limit: 100 characters</p>
+    </div>
+
+    <script>
+        const textArea = document.getElementById("textArea");
+        const counter = document.getElementById("counter");
+        const resetBtn = document.getElementById("resetBtn");
+        const message = document.getElementById("message");
+
+        const MAX_LENGTH = 100;
+
+        function updateCounter() {
+            const remaining = MAX_LENGTH - textArea.value.length;
+
+            counter.textContent = remaining + " characters remaining";
+            counter.classList.remove("warning", "danger");
+
+            if (remaining === 0) {
+                counter.classList.add("danger");
+                message.textContent = "Character limit reached!";
+                message.style.color = "red";
+            } else if (remaining <= 20) {
+                counter.classList.add("warning");
+                message.textContent = "Warning: Only " + remaining + " characters left!";
+                message.style.color = "#d4a000";
+            } else {
+                message.textContent = "Maximum limit: 100 characters";
+                message.style.color = "#555";
+            }
+        }
+
+        textArea.addEventListener("keydown", function(event) {
+            const isControlKey = event.ctrlKey || event.metaKey || event.altKey;
+
+            const isEditingKey = [
+                "Backspace",
+                "Delete",
+                "ArrowLeft",
+                "ArrowRight",
+                "ArrowUp",
+                "ArrowDown",
+                "Home",
+                "End",
+                "Tab"
+            ].includes(event.key);
+
+            if (
+                textArea.value.length >= MAX_LENGTH &&
+                !isControlKey &&
+                !isEditingKey &&
+                event.key.length === 1
+            ) {
+                event.preventDefault();
+            }
+        });
+
+        textArea.addEventListener("input", function() {
+            if (textArea.value.length > MAX_LENGTH) {
+                textArea.value = textArea.value.substring(0, MAX_LENGTH);
+            }
+
+            updateCounter();
+        });
+
+        resetBtn.addEventListener("click", function() {
+            textArea.value = "";
+            updateCounter();
+            textArea.focus();
+        });
+
+        updateCounter();
+    </script>
+</body>
+</html>

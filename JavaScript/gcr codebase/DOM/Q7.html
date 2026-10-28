@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Coordinates Logger</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .mouse-box {
+            width: 400px;
+            height: 400px;
+            max-width: 100%;
+            margin: 25px auto;
+            background: white;
+            border: 3px solid #2563eb;
+            position: relative;
+            overflow: hidden;
+            cursor: crosshair;
+        }
+
+        #coordinates {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: red;
+            border-radius: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        #instructions {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Mouse Coordinates Logger</h1>
+
+    <p id="coordinates">X: 0 | Y: 0</p>
+
+    <p id="instructions">
+        Move the mouse inside the box. Double-click to place a red dot.
+    </p>
+
+    <div class="mouse-box" id="mouseBox"></div>
+
+    <script>
+        const mouseBox = document.getElementById("mouseBox");
+        const coordinates = document.getElementById("coordinates");
+
+        mouseBox.addEventListener("mousemove", function(event) {
+            const rect = mouseBox.getBoundingClientRect();
+
+            const x = Math.round(event.clientX - rect.left);
+            const y = Math.round(event.clientY - rect.top);
+
+            coordinates.textContent = "X: " + x + " | Y: " + y;
+        });
+
+        mouseBox.addEventListener("dblclick", function(event) {
+            const rect = mouseBox.getBoundingClientRect();
+
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+
+            const dot = document.createElement("div");
+
+            dot.className = "dot";
+            dot.style.left = x + "px";
+            dot.style.top = y + "px";
+
+            mouseBox.appendChild(dot);
+        });
+
+        mouseBox.addEventListener("mouseleave", function() {
+            coordinates.textContent = "Mouse outside the box";
+        });
+    </script>
+
+</body>
+</html>

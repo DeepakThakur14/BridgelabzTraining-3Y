@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            margin: 0;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery img {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Image Gallery</h1>
+
+    <div class="gallery" id="gallery">
+        <img src="https://picsum.photos/id/10/600/400" alt="Forest">
+        <img src="https://picsum.photos/id/20/600/400" alt="Nature">
+        <img src="https://picsum.photos/id/30/600/400" alt="Mountain">
+        <img src="https://picsum.photos/id/40/600/400" alt="River">
+        <img src="https://picsum.photos/id/50/600/400" alt="Landscape">
+        <img src="https://picsum.photos/id/60/600/400" alt="Sea">
+    </div>
+
+    <div class="modal" id="modal">
+        <span class="close" id="close">&times;</span>
+        <img id="modalImage" src="" alt="Preview">
+    </div>
+
+    <script>
+        const gallery = document.getElementById("gallery");
+        const modal = document.getElementById("modal");
+        const modalImage = document.getElementById("modalImage");
+        const close = document.getElementById("close");
+
+        gallery.addEventListener("click", function(event) {
+            if (event.target.tagName === "IMG") {
+                modalImage.src = event.target.src;
+                modalImage.alt = event.target.alt;
+                modal.style.display = "flex";
+            }
+        });
+
+        modal.addEventListener("click", function() {
+            modal.style.display = "none";
+        });
+
+        modalImage.addEventListener("click", function(event) {
+            event.stopPropagation();
+        });
+
+        close.addEventListener("click", function(event) {
+            event.stopPropagation();
+            modal.style.display = "none";
+        });
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                modal.style.display = "none";
+            }
+        });
+    </script>
+
+</body>
+</html>
